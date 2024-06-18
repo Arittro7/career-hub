@@ -37,14 +37,16 @@ const AppliedJobs = () => {
       <h2 className="text-3xl font-semibold">
         Total Applied Jobs : {jobsApplied.length}{" "}
       </h2>
+      <div className="text-end">
       <details className="dropdown">
-        <summary className="m-1 btn">Filter</summary>
+        <summary className="m-1 btn ">Filter By </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
           <li onClick={() => handleFilterJobs ('all')}><a>All</a></li>
           <li onClick={() => handleFilterJobs ('remote')}><a>Remote</a></li>
           <li onClick={() => handleFilterJobs ('onsite')}><a>Onsite</a></li>
         </ul>
       </details>
+      </div>
       <div className="mt-36">
         {displayJobs.map((job) => (
           <AppliedJobsCard key={job.id} job={job}></AppliedJobsCard>
