@@ -1,6 +1,6 @@
 import { MdOutlineLocationOn } from "react-icons/md";
-import { Link } from 'react-router-dom';
 import { BiDollarCircle } from "react-icons/bi";
+import { Link } from 'react-router-dom';
 
 
 const Job = ({ job }) => {

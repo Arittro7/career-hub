@@ -1,17 +1,25 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { MdOutlineLocationOn, MdOutlineLocalPhone, MdOutlineEmail} from "react-icons/md";
 import { TiBriefcase } from "react-icons/ti";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { saveJobApplication } from "../../Utility/localStorage";
 
 const JobDetails = () => {
   const jobs = useLoaderData();
   const {id} = useParams();
   const idInt = parseInt(id);
   const job = jobs.find(job => job.id === idInt);
+  
+  const handleApplyJob = () =>{
+    saveJobApplication(idInt);
+    toast('You have applied successfully')
+  }
 
   return (
     <div>
       <h2 className="text-center text-2xl font-bold mb-60">Job Details</h2>
-      <img src={job.logo} alt="" />
+      <img className="w-16 mb-3" src={job.logo} alt="" />
       <div className="grid gap-4 md:grid-cols-4">
         <div className="border space-y-4 md:col-span-3">
           <h2><span className="font-bold">Job Description:</span>{job.job_description}</h2>
@@ -33,9 +41,11 @@ const JobDetails = () => {
         <h2 className="flex "><MdOutlineEmail className="text-2xl mr-2"></MdOutlineEmail> Email: {job.contact_information.email}</h2>
         <h2 className="flex "><MdOutlineLocationOn className="text-5xl mr-2"></MdOutlineLocationOn> Address: {job.contact_information.address}</h2>
         </div>
-        <button className="btn btn-primary w-full mt-3 text-xl font-black text-white">Apply Now</button>
+        <button onClick={handleApplyJob}
+        className="btn btn-primary w-full mt-3 text-xl font-black text-white">Apply Now</button>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
